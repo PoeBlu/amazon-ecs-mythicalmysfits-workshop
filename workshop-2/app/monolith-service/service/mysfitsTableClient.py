@@ -32,13 +32,14 @@ def getAllMysfits():
     # that matches the JSON response structure expected by the frontend.
     mysfitList = defaultdict(list)
     for item in response["Items"]:
-        mysfit = {}
-        mysfit["mysfitId"] = item["MysfitId"]["S"]
-        mysfit["name"] = item["Name"]["S"]
-        mysfit["goodevil"] = item["GoodEvil"]["S"]
-        mysfit["lawchaos"] = item["LawChaos"]["S"]
-        mysfit["species"] = item["Species"]["S"]
-        mysfit["thumbImageUri"] = item["ThumbImageUri"]["S"]
+        mysfit = {
+            "mysfitId": item["MysfitId"]["S"],
+            "name": item["Name"]["S"],
+            "goodevil": item["GoodEvil"]["S"],
+            "lawchaos": item["LawChaos"]["S"],
+            "species": item["Species"]["S"],
+            "thumbImageUri": item["ThumbImageUri"]["S"],
+        }
         mysfitList["mysfits"].append(mysfit)
 
     # convert the create list of dicts in to JSON
@@ -67,13 +68,14 @@ def queryMysfits(queryParam):
 
     mysfitList = defaultdict(list)
     for item in response["Items"]:
-        mysfit = {}
-        mysfit["mysfitId"] = item["MysfitId"]["S"]
-        mysfit["name"] = item["Name"]["S"]
-        mysfit["goodevil"] = item["GoodEvil"]["S"]
-        mysfit["lawchaos"] = item["LawChaos"]["S"]
-        mysfit["species"] = item["Species"]["S"]
-        mysfit["thumbImageUri"] = item["ThumbImageUri"]["S"]
+        mysfit = {
+            "mysfitId": item["MysfitId"]["S"],
+            "name": item["Name"]["S"],
+            "goodevil": item["GoodEvil"]["S"],
+            "lawchaos": item["LawChaos"]["S"],
+            "species": item["Species"]["S"],
+            "thumbImageUri": item["ThumbImageUri"]["S"],
+        }
         mysfitList["mysfits"].append(mysfit)
 
     return json.dumps(mysfitList)
@@ -95,19 +97,19 @@ def getMysfit(mysfitId):
 
     item = response["Item"]
 
-    mysfit = {}
-    mysfit["mysfitId"] = item["MysfitId"]["S"]
-    mysfit["name"] = item["Name"]["S"]
-    mysfit["age"] = int(item["Age"]["N"])
-    mysfit["goodevil"] = item["GoodEvil"]["S"]
-    mysfit["lawchaos"] = item["LawChaos"]["S"]   
-    mysfit["species"] = item["Species"]["S"]
-    mysfit["description"] = item["Description"]["S"]
-    mysfit["thumbImageUri"] = item["ThumbImageUri"]["S"]
-    mysfit["profileImageUri"] = item["ProfileImageUri"]["S"]
-    mysfit["likes"] = item["Likes"]["N"]
-    mysfit["adopted"] = item["Adopted"]["BOOL"]
-
+    mysfit = {
+        "mysfitId": item["MysfitId"]["S"],
+        "name": item["Name"]["S"],
+        "age": int(item["Age"]["N"]),
+        "goodevil": item["GoodEvil"]["S"],
+        "lawchaos": item["LawChaos"]["S"],
+        "species": item["Species"]["S"],
+        "description": item["Description"]["S"],
+        "thumbImageUri": item["ThumbImageUri"]["S"],
+        "profileImageUri": item["ProfileImageUri"]["S"],
+        "likes": item["Likes"]["N"],
+        "adopted": item["Adopted"]["BOOL"],
+    }
     return json.dumps(mysfit)
 
 # increment the number of likes for a mysfit by 1
@@ -126,9 +128,7 @@ def likeMysfit(mysfitId):
         ExpressionAttributeValues={':n': {'N': '1'}}
     )
 
-    response = {}
-    response["Update"] = "Success";
-
+    response = {"Update": "Success"}
     return json.dumps(response)
 
 # mark a mysfit as adopted
@@ -147,7 +147,5 @@ def adoptMysfit(mysfitId):
         ExpressionAttributeValues={':b': {'BOOL': True}}
     )
 
-    response = {}
-    response["Update"] = "Success";
-
+    response = {"Update": "Success"}
     return json.dumps(response)

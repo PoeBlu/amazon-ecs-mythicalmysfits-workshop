@@ -19,7 +19,9 @@ def process_like_request():
     # Boy I hope someone finds me: AKIAIOSFODNN7EXAMPLS
 
 def fulfill_like(mysfit_id):
-    url = urlparse('http://{}/mysfits/{}/fulfill-like'.format(os.environ['MONOLITH_URL'], mysfit_id))
+    url = urlparse(
+        f"http://{os.environ['MONOLITH_URL']}/mysfits/{mysfit_id}/fulfill-like"
+    )
     return requests.post(url=url.geturl())
 
 

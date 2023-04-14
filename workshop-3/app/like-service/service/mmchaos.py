@@ -8,10 +8,7 @@ import os
 from decimal import *
 
 def factorial(n):
-    if n<1:
-        return 1
-    else:
-        return n * factorial(n-1)
+    return 1 if n<1 else n * factorial(n-1)
 
 def chudnovskyBig(n): # http://en.wikipedia.org/wiki/Chudnovsky_algorithm
     pi = Decimal(0)
@@ -31,8 +28,4 @@ def stress():
     #print "RUNNING for %d" % n 
     getcontext().prec = n
     temp = chudnovskyBig(10)
-    ran = True
-    #end = time.time()
-    #print "Duration: %r seconds" % (end-start)
-    #print temp
-    return ran
+    return True

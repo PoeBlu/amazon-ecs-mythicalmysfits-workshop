@@ -27,7 +27,7 @@ app.logger
 # sent to the service root will receive a healthy response.
 @app.route("/")
 def health_check_response():
-    url = urlparse('http://{}/'.format(os.environ['MONOLITH_URL']))
+    url = urlparse(f"http://{os.environ['MONOLITH_URL']}/")
     response = requests.get(url=url.geturl())
 
     flask_response = jsonify({"message" : "Health check, monolith service available."})
@@ -40,7 +40,9 @@ def process_like_request():
     app.logger.info('Like processed.')
 
 def fulfill_like(mysfit_id):
-    url = urlparse('http://{}/mysfits/{}/fulfill-like'.format(os.environ['MONOLITH_URL'], mysfit_id))
+    url = urlparse(
+        f"http://{os.environ['MONOLITH_URL']}/mysfits/{mysfit_id}/fulfill-like"
+    )
     app.logger.info('Fulfill processed.')
     return requests.post(url=url.geturl())
 

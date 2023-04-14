@@ -17,8 +17,7 @@ def healthCheckResponse():
 @app.route("/mysfits", methods=['GET'])
 def getMysfits():
 
-    filterCategory = request.args.get('filter')
-    if filterCategory:
+    if filterCategory := request.args.get('filter'):
         filterValue = request.args.get('value')
         queryParam = {
             'filter': filterCategory,
